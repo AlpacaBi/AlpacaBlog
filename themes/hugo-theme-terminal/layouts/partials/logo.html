@@ -1,0 +1,13 @@
+<a href="{{ if $.Site.Params.Logo.LogoHomeLink }}{{ $.Site.Params.Logo.LogoHomeLink }}{{else}}{{ $.Site.BaseURL }}{{ end }}">
+  <div class="logo">
+    <!-- {{ with $.Site.Params.Logo.logoText }}{{ . }}{{ else }}Terminal{{ end }} -->
+    <div>
+      <span style="color: #fff;
+      padding: 5px 5px;">Alpaca</span> 
+      <span style="    color: #000;
+      background-color: #f90;
+      padding: 5px 10px;
+      border-radius: 7px;">Blog</span>
+    </div>
+  </div>
+</a>

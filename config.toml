@@ -1,0 +1,50 @@
+baseurl = "https://blog.alpaca.run"
+Title = "Alpaca Blog"
+languageCode = "en-us"
+copyright = "© Alpaca Bi"
+theme = "hugo-theme-terminal"
+paginate = 5
+
+[params]
+  author = "Alpaca Bi"
+  contentTypeName = "posts"
+  themeColor = "orange"
+  showMenuItems = 2
+  fullWidthTheme = false
+  centerTheme = true
+  googleAnalytics = "G-GB7GZZ86WE"
+
+
+[languages]
+  [languages.en]
+    title = "Alpaca Blog"
+    subtitle = "Alpaca Bi's Blog"
+    keywords = ""
+    copyright = ""
+    menuMore = "显示更多"
+    readMore = "查看更多"
+    readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "Alpaca Blog"
+      logoHomeLink = "/"
+
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "posts"
+        name = "Blog"
+        url = "/posts"
+        weight = 1
+      [[languages.en.menu.main]]
+        identifier = "about"
+        name = "About"
+        url = "/about"
+        weight = 2
+
+
+      
+         
+      
+      
+      
+      

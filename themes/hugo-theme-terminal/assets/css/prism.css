@@ -100,7 +100,7 @@ pre[class*="language-"].line-numbers > code {
 	margin: var(--code-margin) 0;
 	padding: 20px;
 	/* border: 1px solid rgba(255, 255, 255, .1); */
-	border: 1px dashed white;
+	border: 1px dashed #f90;
 
 	+ .code-toolbar,
 	+ .highlight,

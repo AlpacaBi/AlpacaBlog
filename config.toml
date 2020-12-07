@@ -51,6 +51,12 @@ paginate = 5
         url = "/about"
         weight = 4
 
+[markup]
+  [markup.goldmark.renderer]
+    hardWraps = false
+    unsafe = true
+    xhtml = true
+
 
       
          

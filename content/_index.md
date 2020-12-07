@@ -5,11 +5,9 @@ date: 2020-12-04T10:54:14+08:00
 
 # **"Hi👋, I'm Alpaca Bi"**
 
-
 👷 **Full Stack Developer**  
 
 🤵 [**FSM**](https://fsmpirate.com/Registry?txnid=333489806T734764H) Minister  
-
 
 
 👇 Hit in your terminal to connect with me.
@@ -20,7 +18,7 @@ npx alpaca-bi
 ```bash
 deno run https://cdn.alpaca.run/AlpacaBi.js
 ```
-![Github Stat](https://github-stat.alpaca.run/api?username=alpacabi&show_icons=true&include_all_commits=true&line_height=32")
+![Github Stat](https://github-stat.alpaca.run/api?username=alpacabi&show_icons=true&include_all_commits=true&line_height=32&title_color=f90&bg_color=000000&icon_color=ffffff&text_color=f90)
 
 ## 😎 A little more about me...  
 
@@ -67,10 +65,3 @@ Others
 ![Deepin](https://img.shields.io/badge/-Deepin-007CFF?style=flat-square&logo=deepin)
 ![Centos](https://img.shields.io/badge/-Centos-262577?style=flat-square&logo=Centos)
 ![Raspberry Pi](https://img.shields.io/badge/-Raspberry%20Pi-C51A4A?style=flat-square&logo=Raspberry-Pi)
-
-
-
-
-
-
-

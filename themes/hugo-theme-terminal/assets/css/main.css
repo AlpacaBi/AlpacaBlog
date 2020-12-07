@@ -81,7 +81,12 @@ img {
   &.right {
     margin-left: auto;
   }
+
+  &[src*="#gitstat"] {
+    border: 1px dashed #f90;
+  }
 }
+
 
 p {
   margin-bottom: 20px;

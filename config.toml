@@ -15,6 +15,12 @@ paginate = 5
   googleAnalytics = "G-GB7GZZ86WE"
 
 
+[params.utteranc]
+  enable = true
+  repo = "AlpacaBi/AlpacaBlog"
+  issueTerm = "pathname"
+  theme = "github-dark"
+
 [languages]
   [languages.en]
     title = "Alpaca Blog"
@@ -23,7 +29,7 @@ paginate = 5
     copyright = ""
     menuMore = "显示更多"
     readMore = "查看更多"
-    readOtherPosts = "Read other posts"
+    readOtherPosts = "完"
 
     [languages.en.params.logo]
       logoText = "Alpaca Blog"

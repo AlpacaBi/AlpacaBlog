@@ -1,6 +1,7 @@
 ---
 title: "Hi👋, I'm Alpaca Bi"
 date: 2020-12-04T10:54:14+08:00
+disable_comments: true
 ---
 
 

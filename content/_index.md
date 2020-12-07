@@ -18,7 +18,6 @@ npx alpaca-bi
 ```bash
 deno run https://cdn.alpaca.run/AlpacaBi.js
 ```
-![Github Stat](https://github-stat.alpaca.run/api?username=alpacabi&show_icons=true&include_all_commits=true&line_height=32&title_color=f90&bg_color=000000&icon_color=ffffff&text_color=f90&hide_border=true#gitstat)
 
 ## 😎 A little more about me...  
 
@@ -34,6 +33,11 @@ AlpacaBi := &Info {
     Location: "Guangzhou China"
 }
 ```
+
+![Github Stat](https://github-stat.alpaca.run/api?username=alpacabi&show_icons=true&include_all_commits=true&line_height=32&title_color=f90&bg_color=000000&icon_color=ffffff&text_color=f90&hide_border=true#gitstat)
+
+![Hot Lang](https://github-stat.alpaca.run/api/top-langs?username=alpacabi&layout=compact&title_color=f90&bg_color=000000&icon_color=ffffff&text_color=f90&hide_border=true&card_width=445#gitstat)
+
 
 ## ⚡ Technologies
 

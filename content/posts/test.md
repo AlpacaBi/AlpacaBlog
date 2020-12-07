@@ -3,6 +3,7 @@ title: "Markdown格式测试"
 author: "Alpaca Bi"
 date: 2020-12-04T13:57:54+08:00
 description: "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
+categories: ["test1"]
 tags: ["test"]
 ---
 

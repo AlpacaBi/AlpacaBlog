@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hi👋, I&#39;m Alpaca Bi on Alpaca Blog</title>
+    <link>https://blog.alpaca.run/</link>
+    <description>Recent content in Hi👋, I&#39;m Alpaca Bi on Alpaca Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Dec 2020 10:54:14 +0800</lastBuildDate><atom:link href="https://blog.alpaca.run/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Markdown格式测试</title>
+      <link>https://blog.alpaca.run/posts/test/</link>
+      <pubDate>Fri, 04 Dec 2020 13:57:54 +0800</pubDate>
+      
+      <guid>https://blog.alpaca.run/posts/test/</guid>
+      <description>&lt;p&gt;当我们使用如 webpack 的打包工具时，经常会遇到改动一小行代码，webpack 常常需要耗时数秒甚至十几秒进行重新打包。这是因为 webpack 需要将所有模块打包成一个一个或者多个模块。这就是以 webpack 为代表的 bundle方案。&lt;/p&gt;
+&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hi👋, I&#39;m Alpaca Bi</title>
+      <link>https://blog.alpaca.run/about/</link>
+      <pubDate>Fri, 04 Dec 2020 10:54:14 +0800</pubDate>
+      
+      <guid>https://blog.alpaca.run/about/</guid>
+      <description>👷 Full Stack Developer
+🤵 FSM Minister
+👇 Hit in your terminal to connect with me.
+npx alpaca-bi 👇 If you use Deno🦕, you also can
+deno run https://cdn.alpaca.run/AlpacaBi.js 😎 A little more about me&amp;hellip; AlpacaBi := &amp;amp;Info { Name: &amp;#34;Alpaca Bi&amp;#34;, Age: 25, Occupation: &amp;#34;Web Full Stack Developer&amp;#34;, Clergy: &amp;#34;Flying Spaghetti Monsterism Minister&amp;#34;, Email: &amp;#34;biguokang@outlook.com&amp;#34;, Wechat: &amp;#34;workbiguokang&amp;#34;, Website: &amp;#34;https://alpaca.run&amp;#34;, Location: &amp;#34;Guangzhou China&amp;#34; } ⚡ Technologies Lanuage
+Framework
+Tools
+Others</description>
+    </item>
+    
+  </channel>
+</rss>

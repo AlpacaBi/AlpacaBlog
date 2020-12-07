@@ -9,7 +9,7 @@ paginate = 5
   author = "Alpaca Bi"
   contentTypeName = "posts"
   themeColor = "orange"
-  showMenuItems = 2
+  showMenuItems = 5
   fullWidthTheme = false
   centerTheme = true
   googleAnalytics = "G-GB7GZZ86WE"
@@ -36,10 +36,20 @@ paginate = 5
         url = "/posts"
         weight = 1
       [[languages.en.menu.main]]
+        identifier = "categories"
+        name = "Categories"
+        url = "/categories"
+        weight = 2
+      [[languages.en.menu.main]]
+        identifier = "tags"
+        name = "Tags"
+        url = "/tags"
+        weight = 3
+      [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
         url = "/about"
-        weight = 2
+        weight = 4
 
 
       

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://blog.alpaca.run/categories/</loc>
+    <lastmod>2020-12-04T13:57:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.alpaca.run/posts/test/</loc>
+    <lastmod>2020-12-04T13:57:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.alpaca.run/posts/</loc>
+    <lastmod>2020-12-04T13:57:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.alpaca.run/tags/</loc>
+    <lastmod>2020-12-04T13:57:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.alpaca.run/tags/test/</loc>
+    <lastmod>2020-12-04T13:57:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.alpaca.run/categories/test1/</loc>
+    <lastmod>2020-12-04T13:57:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.alpaca.run/</loc>
+    <lastmod>2020-12-04T10:54:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.alpaca.run/about/</loc>
+    <lastmod>2020-12-04T10:54:14+08:00</lastmod>
+  </url>
+  
+</urlset>

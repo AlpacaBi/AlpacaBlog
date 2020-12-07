@@ -3,6 +3,8 @@ title: "Hi👋, I'm Alpaca Bi"
 date: 2020-12-04T10:54:14+08:00
 ---
 
+# **"Hi👋, I'm Alpaca Bi"**
+
 
 👷 **Full Stack Developer**  
 
@@ -23,7 +25,7 @@ deno run https://cdn.alpaca.run/AlpacaBi.js
 ## 😎 A little more about me...  
 
 ```go
-AlpacaBi := &Info {
+AlpacaBi := &Info { 
     Name: "Alpaca Bi",
     Age: 25,
     Occupation: "Web Full Stack Developer",

@@ -33,4 +33,4 @@ jobs:
 
         #执行同步任务,host在setting-sercerts中配置
       - name: rsync
-        run: rsync -a --delete public/ ${{secrets.USER}}@${{secrets.HOST}:/home/hugo/public/
+        run: rsync -a --delete public/ ${{secrets.USER}}@${{secrets.HOST}}:/home/hugo/public/

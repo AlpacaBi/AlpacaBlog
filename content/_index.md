@@ -4,7 +4,7 @@ date: 2020-12-04T10:54:14+08:00
 ---
 
 # **"Hi👋, I'm Alpaca Bi"**
-hahahaha
+
 👷 **Full Stack Developer**  
 
 🤵 [**FSM**](https://fsmpirate.com/Registry?txnid=333489806T734764H) Minister  

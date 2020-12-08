@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: DEPLOY_ALPACA_BLOG
 
 # Controls when the action will run. 
 on:
@@ -25,7 +25,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: copy file via ssh password
+      # use scp to copy file to my server
+      - name: copy public folder to web server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}

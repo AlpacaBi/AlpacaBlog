@@ -5,6 +5,8 @@ date: 2020-12-04T13:57:54+08:00
 description: "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
 categories: ["test1"]
 tags: ["test"]
+cover: ""
+draft: true
 ---
 
 当我们使用如 webpack 的打包工具时，经常会遇到改动一小行代码，webpack 常常需要耗时数秒甚至十几秒进行重新打包。这是因为 webpack 需要将所有模块打包成一个一个或者多个模块。这就是以 webpack 为代表的 bundle方案。

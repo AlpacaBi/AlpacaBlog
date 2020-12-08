@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Alpaca Blog</title>
-    <link>https://blog.alpaca.run/posts/</link>
-    <description>Recent content in Posts on Alpaca Blog</description>
+    <title>个人想法 on Alpaca Blog</title>
+    <link>https://blog.alpaca.run/tags/%E4%B8%AA%E4%BA%BA%E6%83%B3%E6%B3%95/</link>
+    <description>Recent content in 个人想法 on Alpaca Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Dec 2020 18:29:10 +0800</lastBuildDate><atom:link href="https://blog.alpaca.run/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Dec 2020 18:29:10 +0800</lastBuildDate><atom:link href="https://blog.alpaca.run/tags/%E4%B8%AA%E4%BA%BA%E6%83%B3%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>第一篇博客</title>
       <link>https://blog.alpaca.run/posts/first/</link>

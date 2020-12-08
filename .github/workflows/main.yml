@@ -25,12 +25,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-        #执行同步任务,host在setting-sercerts中配置
-      - name: rsync
-        run: rsync -a --delete public/ ${{secrets.USER}}@${{secrets.HOST}}:/home/hugo/public/
+      - name: DeployToMain
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: public/
+          remote: /home/hugo/public
+          # 涉及偏安全隐私的信息，不要明文暴露在此文件中，因为repo很可能是公开的，会被所有人看见
+          # ${{ ... }} 会应用你在对应项目设置中，配置的对应serets的键值信息，从而保护私密信息不被看到
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.SSH_KEY }}
+          # concurrency: 20

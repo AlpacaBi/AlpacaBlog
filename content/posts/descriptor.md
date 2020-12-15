@@ -1,5 +1,5 @@
 +++
-title = "装饰器Descriptor：一个可能是未来JavaScript的新语法"
+title = "装饰器Decorator：一个可能是未来JavaScript的新语法"
 date = "2020-12-15T10:16:33+08:00"
 author = "Alpaca Bi"
 cover = ""

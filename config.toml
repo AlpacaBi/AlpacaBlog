@@ -25,8 +25,8 @@ paginate = 5
   [languages.en]
     title = "Alpaca Blog"
     subtitle = "Alpaca Bi's Blog"
-    keywords = ""
-    copyright = ""
+    keywords = "Alpaca Blog"
+    copyright = "Alpaca Bi"
     menuMore = "显示更多"
     readMore = "查看更多"
     readOtherPosts = "完"

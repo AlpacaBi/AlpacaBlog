@@ -6,7 +6,23 @@
     <description>Recent content in Hi👋, I&#39;m Alpaca Bi on Alpaca Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Alpaca Bi</copyright>
     <lastBuildDate>Fri, 04 Dec 2020 10:54:14 +0800</lastBuildDate><atom:link href="https://blog.alpaca.run/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>装饰器Descriptor：一个可能是未来JavaScript的新语法</title>
+      <link>https://blog.alpaca.run/posts/descriptor/</link>
+      <pubDate>Tue, 15 Dec 2020 10:16:33 +0800</pubDate>
+      
+      <guid>https://blog.alpaca.run/posts/descriptor/</guid>
+      <description>首先要说一点，目前Decorator已经在在TypeScript中实装，所以下面的代码基本都是TypeScript代码，为了照顾没了解过TypeScript的小伙伴，例子里面关掉了ts类型检查，所以全是AnyScript,所以你基本上不会看到TypeScript的各种语法。
+1.脑子先别带东西，先看看下面的场景  我一般不喜欢一上来就说定义啊、用法之类的东西，我喜欢先从实际场景开始。
+先看看下面的代码
+class Human { constructor(name){ this.name = name } name said() { console.log(`hi, my name is ${this.name}!!!\n`) } } class Cat { meow() { console.log(`meow!!!!`) } } let jack = new Human(&amp;#34;jack&amp;#34;) jack.said() // hi, my name is jack!!!  let tom = new Cat() tom.meow() // meow!!!! 基本上都知道是什么意思吧，就是有一个Human类和Cat类，Human类具有name属性和said方法，而Cat类只有meow方法。
+而现在有一个需求，就是要给Human类和Cat类加上一个设置年龄和显示年龄的业务逻辑，仔细点说就是加上一个age属性、setAge方法和一个getAge方法，该怎么办呢？？？
+1.1.直接手动给这两个类添加 最直观的方法当然是，直接手动给这两个类添加，如下：
+class Human { constructor(name){ this.name = name } name said() { console.log(`hi, my name is ${this.</description>
+    </item>
+    
     <item>
       <title>第一篇博客</title>
       <link>https://blog.alpaca.run/posts/first/</link>

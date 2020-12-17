@@ -212,7 +212,7 @@ tom.getAge() // I am 3 years old now!!!
 
 
 # <span style="color:#F90">2.接下来就开始嗑定义啊、用法、语法什么的 </span>
-待续。。。
+最近沉迷2077，写不动了，待续，后面再更新。。。
 
 
 

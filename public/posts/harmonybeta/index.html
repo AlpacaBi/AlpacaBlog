@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>在鸿蒙2.0beta手机版发布的第二天，我写了一个鸿蒙的物联网应用手机APP :: Alpaca Blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="1.前言  其实鸿蒙2.0今年在9月份的时候已经发布，只不过那个时候只能开发手表和电视应用，还不支持手机。
+那个时候在掘金也写过体验鸿蒙电视应用开发的文章，点击下面👇即可看到：
+鸿蒙2.0发布，让我给大家整个活 而现在能给手机端开发了，于是去了华为HarmonyOS Developer网站，下载了最新的HUAWEI DevEco Studio
+创建项目，就看到了可以选择手机端开发了👇👇 之前为了折腾下阿里云的serverless，就做了一个物联网小项目,还起了个Alpaca IOT的名字
+简单来说就是给我家里的树莓派和工位上的树莓派接上dht11温度传感器 然后把采集到的温湿度数据上传到我自己写的阿里云serverless应用
+之后撸一个前端页面，从我自己写的阿里云serverless应用里读取温湿度数据，显示下来。
+然后把这个网页部署到服务器，就是下面的链接👇👇
+Alpaca IOT
+网站如图所示 所以我现在的工作，就是把我这个前端网页的业务，移植到鸿蒙app上
+2.新建项目  选择手机开发项目，然后项目的目录就出来了。 当然了，第一件事并不是写代码，而是去弄一个运行鸿蒙系统的虚拟机（其实流程和Android Studio是一样的），这样我写的代码才有地方跑 然后砰的一下，一个运行鸿蒙os的虚拟手机就跑起来了。 其实这玩意并不是真的运行在我本地的鸿蒙虚拟机，而是一个远程桌面而已，所以待会写出来的代码，估计是跑在远程的华为机器，然后以远程桌面的形式返回回来
+所以体验有点不好，因为远程传输的画面很糊，操作起来也卡（不是系统卡，而是远程桌面网不好的话有延时）
+好了，既然虚拟机跑起来了，就直接执行项目代码吧，然后一个hello world出来了，说明运行成功。 由于我只是个卑微的前端菜🐔，而鸿蒙又支持js开发，所以我就用js开发了，然后顺便也对比下开发过程中和前端的区别，然后点进去源码的js文件夹，实现这个hello world的其实也是靠三座大山（hml、css、js）
+他们的初始代码如下:
+ hml: 理解成变种的html语法，大体和html一样，不过会有一点区别  &amp;lt;!- index.hml --&amp;gt; &amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt; &amp;lt;text class=&amp;#34;title&amp;#34;&amp;gt; {{ $t(&amp;#39;strings.hello&amp;#39;) }} {{title}} &amp;lt;/text&amp;gt; &amp;lt;/div&amp;gt;  JavaScript: 标准ECMA,就是js运行时会和浏览器的有一点区别（比如一些api不一定能直接用）  // index.js export default { data: { title: &amp;#34;&amp;#34; }, onInit() { this.title = this." />
+<meta name="keywords" content="鸿蒙, " />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.alpaca.run/posts/harmonybeta/" />
+
+
+
+
+<link rel="stylesheet" href="https://blog.alpaca.run/assets/style.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="https://blog.alpaca.run/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="https://blog.alpaca.run/img/favicon/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="在鸿蒙2.0beta手机版发布的第二天，我写了一个鸿蒙的物联网应用手机APP">
+<meta property="og:description" content="昨日(12月16日)，华为发布了鸿蒙2.0手机开发者beta版，开放完整的鸿蒙OS 2.0系统能力、丰富的API（应用开发接口），以及强大的开发工具DevEco Studio等技术装备，现在我第一时间尝尝鲜，写一个鸿蒙的手机App。" />
+<meta property="og:url" content="https://blog.alpaca.run/posts/harmonybeta/" />
+<meta property="og:site_name" content="Alpaca Blog" />
+
+  <meta property="og:image" content="https://blog.alpaca.run">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+  <meta property="article:section" content="业余折腾" />
+
+
+  <meta property="article:published_time" content="2020-12-17 13:39:39 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GB7GZZ86WE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-GB7GZZ86WE');
+  </script>
+
+
+
+
+
+</head>
+<body class="orange">
+
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    
+    <div>
+      <span style="color: #fff;
+      padding: 5px 5px;">Alpaca</span> 
+      <span style="    color: #000;
+      background-color: #f90;
+      padding: 5px 10px;
+      border-radius: 7px;">Blog</span>
+    </div>
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/posts">Blog</a></li>
+        
+      
+        
+          <li><a href="/categories">Categories</a></li>
+        
+      
+        
+          <li><a href="/tags">Tags</a></li>
+        
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/posts">Blog</a></li>
+      
+    
+      
+        <li><a href="/categories">Categories</a></li>
+      
+    
+      
+        <li><a href="/tags">Tags</a></li>
+      
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://blog.alpaca.run/posts/harmonybeta/">在鸿蒙2.0beta手机版发布的第二天，我写了一个鸿蒙的物联网应用手机APP</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2020-12-17 
+      </span>
+    
+    
+    <span class="post-author">:: Alpaca Bi</span>
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="https://blog.alpaca.run/tags/%E9%B8%BF%E8%92%99/">鸿蒙</a>&nbsp;
+    
+  </span>
+  
+
+  
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="span-stylecolorf901前言-span"><span style="color:#F90">1.前言 </span><a href="#span-stylecolorf901前言-span" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>其实鸿蒙2.0今年在9月份的时候已经发布，只不过那个时候只能开发手表和电视应用，还不支持手机。</p>
+<p>那个时候在<a href="https://juejin.cn/">掘金</a>也写过体验鸿蒙电视应用开发的文章，点击下面👇即可看到：</p>
+<p><span style="color:#F90"><a href="https://juejin.cn/post/6870840090608795662">鸿蒙2.0发布，让我给大家整个活</a></span>
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/1.png" alt="1" /></p>
+<p>而现在能给手机端开发了，于是去了华为<span style="color:#F90"><a href="https://developer.harmonyos.com/cn/home">HarmonyOS Developer</a></span>网站，下载了最新的<span style="color:#F90"><a href="https://developer.harmonyos.com/cn/develop/deveco-studio">HUAWEI DevEco Studio</a></span></p>
+<p>创建项目，就看到了可以选择手机端开发了👇👇
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/2.jpg" alt="2" /></p>
+<br/>
+<p>之前为了折腾下阿里云的serverless，就做了一个物联网小项目,还起了个Alpaca IOT的名字</p>
+<p>简单来说就是给我家里的树莓派和工位上的树莓派接上dht11温度传感器
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/3.png" alt="3" /></p>
+<p>然后把采集到的温湿度数据上传到我自己写的阿里云serverless应用</p>
+<p>之后撸一个前端页面，从我自己写的阿里云serverless应用里读取温湿度数据，显示下来。</p>
+<p>然后把这个网页部署到服务器，就是下面的链接👇👇</p>
+<p><span style="color:#F90"><a href="https:iot.alpaca.run">Alpaca IOT</a></span></p>
+<p>网站如图所示
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/4.jpg" alt="4" /></p>
+<p>所以我现在的工作，就是把我这个前端网页的业务，移植到鸿蒙app上</p>
+<h1 id="span-stylecolorf902新建项目-span"><span style="color:#F90">2.新建项目 </span><a href="#span-stylecolorf902新建项目-span" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>选择手机开发项目，然后项目的目录就出来了。
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/5.png" alt="5" /></p>
+<p>当然了，第一件事并不是写代码，而是去弄一个运行鸿蒙系统的虚拟机（其实流程和Android Studio是一样的），这样我写的代码才有地方跑
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/6.png" alt="6" /></p>
+<p><img src="https://cdn.alpaca.run/blog/harmonyBeta/7.png" alt="7" /></p>
+<p>然后砰的一下，一个运行鸿蒙os的虚拟手机就跑起来了。
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/8.png" alt="8" /></p>
+<p>其实这玩意并不是真的运行在我本地的鸿蒙虚拟机，而是一个远程桌面而已，所以待会写出来的代码，估计是跑在远程的华为机器，然后以远程桌面的形式返回回来</p>
+<p>所以体验有点不好，因为远程传输的画面很糊，操作起来也卡（不是系统卡，而是远程桌面网不好的话有延时）</p>
+<p>好了，既然虚拟机跑起来了，就直接执行项目代码吧，然后一个hello world出来了，说明运行成功。
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/9.png" alt="9" /></p>
+<p>由于我只是个卑微的前端菜🐔，而鸿蒙又支持js开发，所以我就用js开发了，然后顺便也对比下开发过程中和前端的区别，然后点进去源码的js文件夹，实现这个hello world的其实也是靠三座大山（hml、css、js）</p>
+<p>他们的初始代码如下:</p>
+<ul>
+<li>hml: 理解成变种的html语法，大体和html一样，不过会有一点区别</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!- index.hml --&gt;</span>
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+    &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span>&gt;
+        {{ $t(&#39;strings.hello&#39;) }} {{title}}
+    &lt;/<span style="color:#f92672">text</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><br/>
+<ul>
+<li>JavaScript: 标准ECMA,就是js运行时会和浏览器的有一点区别（比如一些api不一定能直接用）</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// index.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>
+    },
+    <span style="color:#a6e22e">onInit</span>() {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$t</span>(<span style="color:#e6db74">&#39;strings.world&#39;</span>);
+    }
+}
+</code></pre></div><br/>  
+- css: 基本没发现和普通css有什么区别
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#75715e">/* index.css */</span>
+.<span style="color:#a6e22e">container</span> {
+    <span style="color:#66d9ef">flex-direction</span>: <span style="color:#66d9ef">column</span>;
+    <span style="color:#66d9ef">justify-content</span>: <span style="color:#66d9ef">center</span>;
+    <span style="color:#66d9ef">align-items</span>: <span style="color:#66d9ef">center</span>;
+}
+
+.<span style="color:#a6e22e">title</span> {
+    <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span>;
+}
+
+</code></pre></div><p>看了下和小程序的模式类似，基本上也是h5+js+css,大体上和前端开发的区别不大，也是走的MVVM数据驱动视图那套模式，就是api和一些细节不一样，基本上可以说会Vue的就能上手。</p>
+<p>所以一开始我不看文档，直接复制粘贴不加工，看看能不能“无痛移植”</p>
+<p>结果发现不行，就我发现的，和前端网页相比，有以下区别</p>
+<ul>
+<li>hml
+<ol>
+<li>这里的布局只有flex和grid(默认flex)，所以默认的前端html传统文档流在这里会垮掉（比如div标签并不会换行，换行操作要靠设置flex相关属性）</li>
+<li>文字内容要用<code>&lt;text&gt;</code>标签包起来，不包的话文字不会显示出来
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/10.png" alt="10" /></li>
+</ol>
+</li>
+<li>js
+<ol>
+<li>如图，看来貌似这里的js运行时不支持async/await（有没有Promise没试过，看来貌似要地狱回调）</li>
+<li>看来一些api也不能直接用，比如<code>fetch</code>，后来看了下开发文档想要搞网络请求要从<code>@system.fetch</code>引,而且引过来的fetch只能靠回调拿数据
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/11.png" alt="11" /></li>
+</ol>
+</li>
+<li>css
+<ol>
+<li>大致相同，就我发现的可能这里的css规则会更严格，比如我想设置背景色我用background不行，必须要background-color</li>
+</ol>
+</li>
+</ul>
+<p>所以我后面把开发文档看了一遍，基本上和小程序一样，总体架子不变，只有少量的区别，要根据文档修修改改才能把前端业务移植过来。</p>
+<h1 id="span-stylecolorf903开始移植-span"><span style="color:#F90">3.开始移植 </span><a href="#span-stylecolorf903开始移植-span" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>先给你看看我原来前端页面代码是怎样的（可能你们会觉得我这里的html语法怪异，因为我这个网页是基于ef.js弄得）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"> <span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+    &lt;<span style="color:#f92672">header</span>&gt;
+        &lt;<span style="color:#f92672">title</span>&gt;Alpaca IOT&lt;/<span style="color:#f92672">title</span>&gt;
+        &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0&#34;</span> /&gt;
+        &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">http-equiv</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content-Type&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/html; charset=utf-8&#34;</span>&gt; 
+        &lt;<span style="color:#f92672">style</span>&gt;
+            <span style="color:#f92672">body</span> { 
+                <span style="color:#66d9ef">background-color</span>: <span style="color:#66d9ef">black</span>;
+                <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">white</span>;
+            }
+
+            #app {
+                <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">95</span><span style="color:#66d9ef">vh</span>;
+                <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">flex</span>; <span style="color:#75715e">/* Safari */</span>
+                <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">flex</span>;
+                <span style="color:#66d9ef">flex-direction</span>: <span style="color:#66d9ef">row</span>;
+                <span style="color:#66d9ef">flex-wrap</span>: <span style="color:#66d9ef">wrap</span>;
+                <span style="color:#66d9ef">justify-content</span>: <span style="color:#66d9ef">center</span>;
+                <span style="color:#66d9ef">align-items</span>: <span style="color:#66d9ef">center</span>;
+                <span style="color:#66d9ef">align-content</span>: <span style="color:#66d9ef">center</span>;
+            }
+
+            #app .<span style="color:#a6e22e">auther</span> {
+                <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">fixed</span>;
+                <span style="color:#66d9ef">bottom</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">cursor</span>: <span style="color:#66d9ef">pointer</span>;
+            }
+
+            #app .<span style="color:#a6e22e">auther</span> <span style="color:#f92672">a</span> {
+                <span style="color:#66d9ef">text-decoration</span>:<span style="color:#66d9ef">none</span>;
+                <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">white</span>
+            }
+
+            #app .<span style="color:#a6e22e">auther</span> <span style="color:#f92672">a</span>:<span style="color:#a6e22e">hover</span> {
+                <span style="color:#66d9ef">text-decoration</span>:<span style="color:#66d9ef">solid</span>;
+                <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#f90</span>;
+            }
+
+            #app .<span style="color:#a6e22e">time</span> {
+                <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">fixed</span>;
+                <span style="color:#66d9ef">bottom</span>: <span style="color:#ae81ff">15</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">px</span>;
+            }
+
+            #app .<span style="color:#a6e22e">content</span>{
+                <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">350</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">text-align</span>: <span style="color:#66d9ef">center</span>;
+                <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">5</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">25</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">background</span>: <span style="color:#ae81ff">#f90</span>;
+                <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">8</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">black</span>;
+            }
+
+            #app .<span style="color:#a6e22e">title</span> {
+                <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">30</span><span style="color:#66d9ef">px</span>;
+                <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+            }
+
+            #app .<span style="color:#a6e22e">data-box</span> {
+                <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">flex</span>;
+                <span style="color:#66d9ef">flex-direction</span>: <span style="color:#66d9ef">row</span>;
+                <span style="color:#66d9ef">flex-wrap</span>: <span style="color:#66d9ef">wrap</span>;
+                <span style="color:#66d9ef">justify-content</span>: <span style="color:#66d9ef">space</span><span style="color:#f92672">-</span>around;
+            }
+
+            #app .<span style="color:#a6e22e">data-box</span> .<span style="color:#a6e22e">text</span>{
+                <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">24</span><span style="color:#66d9ef">px</span>;
+            }
+
+            #app .<span style="color:#a6e22e">data-box</span> .<span style="color:#a6e22e">num</span>{
+                <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">30</span><span style="color:#66d9ef">px</span>;
+            }
+
+        &lt;/<span style="color:#f92672">style</span>&gt;
+    &lt;/<span style="color:#f92672">header</span>&gt;
+    &lt;<span style="color:#f92672">body</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://alpaca.cdn.bcebos.com/js/ef.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+        &lt;<span style="color:#f92672">script</span>&gt;
+            <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">t</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">ef</span>;
+            <span style="color:#75715e">// 创建ef对象
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">t</span><span style="color:#e6db74">`
+</span><span style="color:#e6db74">            &gt;div.content
+</span><span style="color:#e6db74">                &gt;div.title
+</span><span style="color:#e6db74">                    .家里实时温湿度
+</span><span style="color:#e6db74">                &gt;div.data-box
+</span><span style="color:#e6db74">                    &gt;div
+</span><span style="color:#e6db74">                        &gt;span.text
+</span><span style="color:#e6db74">                            .温度：
+</span><span style="color:#e6db74">                        &gt;span.num
+</span><span style="color:#e6db74">                            .{{home_temperature}}
+</span><span style="color:#e6db74">                        &gt;span.symbol
+</span><span style="color:#e6db74">                            .°C
+</span><span style="color:#e6db74">                    &gt;div
+</span><span style="color:#e6db74">                        &gt;span.text
+</span><span style="color:#e6db74">                            .湿度：
+</span><span style="color:#e6db74">                        &gt;span.num
+</span><span style="color:#e6db74">                            .{{home_humidity}}
+</span><span style="color:#e6db74">                        &gt;span.symbol
+</span><span style="color:#e6db74">                            .%
+</span><span style="color:#e6db74">            &gt;div.content
+</span><span style="color:#e6db74">                &gt;div.title
+</span><span style="color:#e6db74">                    .工位实时温湿度
+</span><span style="color:#e6db74">                &gt;div.data-box
+</span><span style="color:#e6db74">                    &gt;div
+</span><span style="color:#e6db74">                        &gt;span.text
+</span><span style="color:#e6db74">                            .温度：
+</span><span style="color:#e6db74">                        &gt;span.num
+</span><span style="color:#e6db74">                            .{{comp_temperature}}
+</span><span style="color:#e6db74">                        &gt;span.symbol
+</span><span style="color:#e6db74">                            .°C
+</span><span style="color:#e6db74">                    &gt;div
+</span><span style="color:#e6db74">                        &gt;span.text
+</span><span style="color:#e6db74">                            .湿度：
+</span><span style="color:#e6db74">                        &gt;span.num
+</span><span style="color:#e6db74">                            .{{comp_humidity}}
+</span><span style="color:#e6db74">                        &gt;span.symbol
+</span><span style="color:#e6db74">                            .%
+</span><span style="color:#e6db74">            &gt;div.auther
+</span><span style="color:#e6db74">                &gt;a
+</span><span style="color:#e6db74">                    #href = https://github.com/AlpacaBi
+</span><span style="color:#e6db74">                    #target=&#34;_blank&#34;
+</span><span style="color:#e6db74">                    .@Alpaca Bi
+</span><span style="color:#e6db74">            &gt;div.time
+</span><span style="color:#e6db74">                .最后更新时间： {{time}}
+</span><span style="color:#e6db74">            `</span>
+            <span style="color:#75715e">// alicloud serverless 接口
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://1055462284844024.cn-shenzhen.fc.aliyuncs.com/2016-08-15/proxy/alpaca-iot/alpaca-temp/getData&#34;</span>
+            <span style="color:#75715e">// 从接口拿数据赋给ef对象的data层
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">updateData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span>() =&gt; {
+                <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">url</span>)
+                <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">resData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>()
+                <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">$data</span> <span style="color:#f92672">=</span> {
+                    <span style="color:#a6e22e">home_temperature</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">home</span>.<span style="color:#a6e22e">temperature</span>,
+                    <span style="color:#a6e22e">home_humidity</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">home</span>.<span style="color:#a6e22e">humidity</span>,
+                    <span style="color:#a6e22e">comp_temperature</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">comp</span>.<span style="color:#a6e22e">temperature</span>,
+                    <span style="color:#a6e22e">comp_humidity</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">comp</span>.<span style="color:#a6e22e">humidity</span>,
+                    <span style="color:#a6e22e">time</span><span style="color:#f92672">:</span> (<span style="color:#66d9ef">new</span> Date()).<span style="color:#a6e22e">toLocaleString</span>()
+                }
+            }
+            <span style="color:#a6e22e">updateData</span>()
+            <span style="color:#75715e">// 把ef对象挂载在dom树上
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">$mount</span>({<span style="color:#a6e22e">target</span><span style="color:#f92672">:</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;app&#39;</span>)})
+            <span style="color:#75715e">// 每15秒更新一次数据
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">setInterval</span>(<span style="color:#e6db74">&#34;updateData()&#34;</span>, <span style="color:#ae81ff">60000</span>);
+        &lt;/<span style="color:#f92672">script</span>&gt;
+    &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>后来磕磕碰碰，就只改了这3个文件，就好了，修改后的代码如下（你们可以看看和普通前端有什么区别）</p>
+<ul>
+<li>index.hml</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!- index.hml --&gt;</span>
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;content&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span>&gt;
+            &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;家里实时温湿度&lt;/<span style="color:#f92672">text</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data-box&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;温度:&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;num&#34;</span>&gt;{{home_temperature}}&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;symbol&#34;</span>&gt;°C&lt;/<span style="color:#f92672">text</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">div</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;湿度:&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;num&#34;</span>&gt;{{home_humidity}}&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;symbol&#34;</span>&gt;%&lt;/<span style="color:#f92672">text</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;content&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span>&gt;
+            &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;工位实时温湿度&lt;/<span style="color:#f92672">text</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data-box&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;温度:&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;num&#34;</span>&gt;{{comp_temperature}}&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;symbol&#34;</span>&gt;°C&lt;/<span style="color:#f92672">text</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">div</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>&gt;湿度:&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;num&#34;</span>&gt;{{comp_humidity}}&lt;/<span style="color:#f92672">text</span>&gt;
+                &lt;<span style="color:#f92672">text</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;symbol&#34;</span>&gt;%&lt;/<span style="color:#f92672">text</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><br/>  
+<ul>
+<li>index.js</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// index.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">fetch</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@system.fetch&#39;</span>;
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">home_temperature</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+        <span style="color:#a6e22e">home_humidity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+        <span style="color:#a6e22e">comp_temperature</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+        <span style="color:#a6e22e">comp_humidity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+    },
+    <span style="color:#a6e22e">onInit</span>() {
+        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">_this</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>
+        <span style="color:#75715e">// 阿里云serverless接口
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://1055462284844024.cn-shenzhen.fc.aliyuncs.com/2016-08-15/proxy/alpaca-iot/alpaca-temp/getData&#34;</span>
+        <span style="color:#75715e">// 每60秒向阿里云serverless读取数据并更新到前端页面
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">setInterval</span>(<span style="color:#66d9ef">function</span>() {
+            <span style="color:#a6e22e">fetch</span>.<span style="color:#a6e22e">fetch</span>({
+                <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">url</span>,
+                <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">response</span>) {
+                    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">resData</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>)
+                    <span style="color:#a6e22e">_this</span>.<span style="color:#a6e22e">home_temperature</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">home</span>.<span style="color:#a6e22e">temperature</span>
+                    <span style="color:#a6e22e">_this</span>.<span style="color:#a6e22e">home_humidity</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">home</span>.<span style="color:#a6e22e">humidity</span>
+                    <span style="color:#a6e22e">_this</span>.<span style="color:#a6e22e">comp_temperature</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">comp</span>.<span style="color:#a6e22e">temperature</span>
+                    <span style="color:#a6e22e">_this</span>.<span style="color:#a6e22e">comp_humidity</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">resData</span>.<span style="color:#a6e22e">comp</span>.<span style="color:#a6e22e">humidity</span>
+                },
+                <span style="color:#a6e22e">fail</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">code</span>) {
+                    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;fail callback&#39;</span>)
+                },
+            });
+        }, <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>)
+    }
+}
+</code></pre></div><br/>  
+<ul>
+<li>index.css</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#75715e">/* index.css */</span>
+.<span style="color:#a6e22e">container</span> {
+    <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+    <span style="color:#66d9ef">flex-direction</span>: <span style="color:#66d9ef">row</span>;
+    <span style="color:#66d9ef">flex-wrap</span>: <span style="color:#66d9ef">wrap</span>;
+    <span style="color:#66d9ef">justify-content</span>: <span style="color:#66d9ef">center</span>;
+    <span style="color:#66d9ef">align-items</span>: <span style="color:#66d9ef">center</span>;
+    <span style="color:#66d9ef">align-content</span>: <span style="color:#66d9ef">center</span>;
+    <span style="color:#66d9ef">background-color</span>: <span style="color:#66d9ef">black</span>;
+}
+
+.<span style="color:#a6e22e">container</span> .<span style="color:#a6e22e">content</span>{
+    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">600</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">flex-wrap</span>: <span style="color:#66d9ef">wrap</span>;
+    <span style="color:#66d9ef">align-items</span>: <span style="color:#66d9ef">center</span>;
+    <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">25</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#f90</span>;
+    <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">8</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">black</span>;
+}
+
+.<span style="color:#a6e22e">container</span> .<span style="color:#a6e22e">content</span> .<span style="color:#a6e22e">title</span> {
+    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">580</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+}
+
+.<span style="color:#a6e22e">container</span> .<span style="color:#a6e22e">content</span> .<span style="color:#a6e22e">title</span> .<span style="color:#a6e22e">text</span> {
+    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">580</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">text-align</span>: <span style="color:#66d9ef">center</span>;
+    <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">60</span><span style="color:#66d9ef">px</span>;
+}
+
+.<span style="color:#a6e22e">container</span> .<span style="color:#a6e22e">content</span> .<span style="color:#a6e22e">data-box</span> {
+    <span style="color:#66d9ef">flex-direction</span>: <span style="color:#66d9ef">row</span>;
+    <span style="color:#66d9ef">flex-wrap</span>: <span style="color:#66d9ef">wrap</span>;
+    <span style="color:#66d9ef">justify-content</span>: <span style="color:#66d9ef">space</span><span style="color:#f92672">-</span>around;
+}
+
+.<span style="color:#a6e22e">container</span> .<span style="color:#a6e22e">content</span> .<span style="color:#a6e22e">data-box</span> .<span style="color:#a6e22e">text</span>{
+    <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">48</span><span style="color:#66d9ef">px</span>;
+}
+
+.<span style="color:#a6e22e">container</span> .<span style="color:#a6e22e">content</span> .<span style="color:#a6e22e">data-box</span> .<span style="color:#a6e22e">num</span>{
+    <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">60</span><span style="color:#66d9ef">px</span>;
+}
+
+
+</code></pre></div><p>然后我的鸿蒙物联网APP Alpaca IOT就这样跑起来啦！！！
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/12.png" alt="12" /></p>
+<p>现在既然做出来了，最后一步，就是打包app了，怎么打包我就不说了，也就是按几个菜单而已，最后就打包出hap后缀的安装包了。</p>
+<p><img src="https://cdn.alpaca.run/blog/harmonyBeta/13.png" alt="13" /></p>
+<p>所以从现在开始，我可以说自己是开发过鸿蒙APP的工程师了！！！</p>
+<p>ps.一个开发过程中遇到的一个小插曲👇👇
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/16.png" alt="15" /></p>
+<h1 id="span-stylecolorf904其实有些事情还没做好-span"><span style="color:#F90">4.其实有些事情还没做好 </span><a href="#span-stylecolorf904其实有些事情还没做好-span" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>发现了吗，我上面一直都是对着远程的华为设备进行隔空操作，哪怕APP也打包出来了，也没地去安装。</p>
+<p>所以很核心的问题来了，要跑在真手机上才有意义！！！</p>
+<p>还好昨天华为就公测招募华为鸿蒙OS 2.0手机开发者Beta版，支持Mate 30 / P40系列OTA升级。
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/14.png" alt="14" /></p>
+<p>而我恰好也有一台P40PRO，符合设备要求，所以我也提了申请了！！！
+<img src="https://cdn.alpaca.run/blog/harmonyBeta/15.png" alt="15" /></p>
+<p>等到申请通过，我的手机就可以OTA升级到鸿蒙系统，到时候把我刚刚打包的APP跑到我的手机上，再更新相关内容。</p>
+<p>另外如果有人的设备刚好符合要求，有兴趣升级到鸿蒙OS的,<span style="color:#F90"><a href="https://developer.huawei.com/consumer/cn/activity/301607581257578636">点击这里</a></span>即可申请</p>
+<h1 id="span-stylecolorf905最后-span"><span style="color:#F90">5.最后 </span><a href="#span-stylecolorf905最后-span" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>看到这里你们肯定要打我，标题鸿蒙物联网APP说的那么高大上，现在看来无非就是做了个前端，每60秒往后端拿数据而已，随便一个前端菜🐔都能做。</p>
+<p>这个时候估计不少大佬都要开始嘲讽我了:就这？？？</p>
+<p>所以想想看，连我这种前端菜🐔也能有模有样弄个还能用的APP，而且我还觉得不难，那么那些有着安卓开发经验的大佬岂不是随随便便都能搞出一堆有用的应用，所以意义就在这里了。</p>
+<p>最后欢迎转载我这个文章，就是说明出处就行了（出处来源就写来自于https://blog.alpaca.run就行了）</p>
+
+      </div></div>
+
+  
+  
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">完</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="https://blog.alpaca.run/posts/descriptor/">
+                <span class="button__text">装饰器Decorator：一个可能是未来JavaScript的新语法</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+  
+<section class="comments">
+    <script src="https://utteranc.es/client.js"  repo="AlpacaBi/AlpacaBlog" issue-term="pathname" theme="github-dark" crossorigin="anonymous" async></script>
+</section>
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  
+</footer>
+
+<script src="https://blog.alpaca.run/assets/main.js"></script>
+<script src="https://blog.alpaca.run/assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+</body>
+</html>

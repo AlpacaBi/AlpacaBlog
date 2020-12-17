@@ -446,7 +446,11 @@ ps.一个开发过程中遇到的一个小插曲👇👇
 ![14](https://cdn.alpaca.run/blog/harmonyBeta/14.png)
 
 而我恰好也有一台P40PRO，符合设备要求，所以我也提了申请了！！！
+<<<<<<< HEAD
 ![15](https://cdn.alpaca.run/blog/harmonyBeta/15.jpg)
+=======
+![15](https://cdn.alpaca.run/blog/harmonyBeta/15.png)
+>>>>>>> 80faa71b5e406fcceb7e3dac2735863c45e7fd38
 
 等到申请通过，我的手机就可以OTA升级到鸿蒙系统，到时候把我刚刚打包的APP跑到我的手机上，再更新相关内容。
 

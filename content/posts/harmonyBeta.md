@@ -29,7 +29,7 @@ showFullContent = false
 之前为了折腾下阿里云的serverless，就做了一个物联网小项目,还起了个Alpaca IOT的名字
 
 简单来说就是给我家里的树莓派和工位上的树莓派接上dht11温度传感器
-![3](https://cdn.alpaca.run/blog/harmonyBeta/3.png)
+![3](https://cdn.alpaca.run/blog/harmonyBeta/31.png)
 
 然后把采集到的温湿度数据上传到我自己写的阿里云serverless应用
 

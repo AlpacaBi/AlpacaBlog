@@ -85,7 +85,7 @@ class Human { constructor(name){ this.name = name } name said() { console.log(`h
 🤵 FSM Minister
 👇 Hit in your terminal to connect with me.
 npx alpaca-bi 👇 If you use Deno🦕, you also can
-deno run https://cdn.alpaca.run/AlpacaBi.js 😎 A little more about me&amp;hellip; AlpacaBi := &amp;amp;Info { Name: &amp;#34;Alpaca Bi&amp;#34;, Age: 25, Occupation: &amp;#34;Web Full Stack Developer&amp;#34;, Clergy: &amp;#34;Flying Spaghetti Monsterism Minister&amp;#34;, Email: &amp;#34;biguokang@outlook.com&amp;#34;, Wechat: &amp;#34;workbiguokang&amp;#34;, Website: &amp;#34;https://alpaca.run&amp;#34;, Location: &amp;#34;Guangzhou China&amp;#34; } ⚡ Technologies Lanuage
+deno run https://cdn.alpaca.run/AlpacaBi.js 😎 A little more about me&amp;hellip; AlpacaBi := &amp;amp;Info { Name: &amp;#34;Alpaca Bi&amp;#34;, Age: 26, Occupation: &amp;#34;Web Full Stack Developer&amp;#34;, Clergy: &amp;#34;Flying Spaghetti Monsterism Minister&amp;#34;, Email: &amp;#34;biguokang@outlook.com&amp;#34;, Wechat: &amp;#34;workbiguokang&amp;#34;, Website: &amp;#34;https://alpaca.run&amp;#34;, Location: &amp;#34;Guangzhou China&amp;#34; } ⚡ Technologies Lanuage
 Framework
 Tools
 Others</description>

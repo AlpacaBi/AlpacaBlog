@@ -25,11 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: manyuanrong/setup-ossutil@v1.0
-        with:
-          endpoint: "oss-cn-guangzhou.aliyuncs.com"
-          access-key-id: ${{ secrets.ALIYUN_ACCESSKEY_ID }}
-          access-key-secret: ${{ secrets.ALIYUN_ACCESSKEY_SECRET }}
-
       - name: Deply To Aliyun OSS
-        run: ossutil cp public oss://blog-alpaca-run/ -rf
+        uses: fangbinwei/aliyun-oss-website-action@v1
+        with:
+          accessKeyId: ${{ secrets.ALIYUN_ACCESSKEY_ID }}
+          accessKeySecret: ${{ secrets.ALIYUN_ACCESSKEY_SECRET }}
+          bucket: blog-alpaca-run
+          # use your own endpoint
+          endpoint: oss-cn-guangzhou.aliyuncs.com
+          folder: public

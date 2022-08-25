@@ -32,4 +32,4 @@ jobs:
           access-key-secret: ${{ secrets.ALIYUN_ACCESSKEY_SECRET }}
 
       - name: Deply To Aliyun OSS
-          run: ossutil cp public oss://blog-alpaca-run/ -rf
+        run: ossutil cp public oss://blog-alpaca-run/ -rf

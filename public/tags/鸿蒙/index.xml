@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>鸿蒙 on Alpaca Blog</title>
-    <link>https://blog.alpaca.run/tags/%E9%B8%BF%E8%92%99/</link>
+    <link>https://alpaca-bi.com/tags/%E9%B8%BF%E8%92%99/</link>
     <description>Recent content in 鸿蒙 on Alpaca Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Alpaca Bi</copyright>
-    <lastBuildDate>Thu, 17 Dec 2020 13:39:39 +0800</lastBuildDate><atom:link href="https://blog.alpaca.run/tags/%E9%B8%BF%E8%92%99/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Dec 2020 13:39:39 +0800</lastBuildDate><atom:link href="https://alpaca-bi.com/tags/%E9%B8%BF%E8%92%99/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在鸿蒙2.0beta手机版发布的第二天，我写了一个鸿蒙的物联网应用手机APP</title>
-      <link>https://blog.alpaca.run/posts/harmonybeta/</link>
+      <link>https://alpaca-bi.com/posts/harmonybeta/</link>
       <pubDate>Thu, 17 Dec 2020 13:39:39 +0800</pubDate>
       
-      <guid>https://blog.alpaca.run/posts/harmonybeta/</guid>
+      <guid>https://alpaca-bi.com/posts/harmonybeta/</guid>
       <description>1.前言 其实鸿蒙2.0今年在9月份的时候已经发布，只不过那个时候只能开发手表和电视应用，还不支持手机。
 那个时候在掘金也写过体验鸿蒙电视应用开发的文章，点击下面👇即可看到：
 鸿蒙2.0发布，让我给大家整个活 而现在能给手机端开发了，于是去了华为HarmonyOS Developer网站，下载了最新的HUAWEI DevEco Studio

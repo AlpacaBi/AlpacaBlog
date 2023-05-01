@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Alpaca Blog</title>
-    <link>https://blog.alpaca.run/posts/</link>
+    <link>https://alpaca-bi.com/posts/</link>
     <description>Recent content in Posts on Alpaca Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Alpaca Bi</copyright>
-    <lastBuildDate>Thu, 17 Dec 2020 13:39:39 +0800</lastBuildDate><atom:link href="https://blog.alpaca.run/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Dec 2020 13:39:39 +0800</lastBuildDate><atom:link href="https://alpaca-bi.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在鸿蒙2.0beta手机版发布的第二天，我写了一个鸿蒙的物联网应用手机APP</title>
-      <link>https://blog.alpaca.run/posts/harmonybeta/</link>
+      <link>https://alpaca-bi.com/posts/harmonybeta/</link>
       <pubDate>Thu, 17 Dec 2020 13:39:39 +0800</pubDate>
       
-      <guid>https://blog.alpaca.run/posts/harmonybeta/</guid>
+      <guid>https://alpaca-bi.com/posts/harmonybeta/</guid>
       <description>1.前言 其实鸿蒙2.0今年在9月份的时候已经发布，只不过那个时候只能开发手表和电视应用，还不支持手机。
 那个时候在掘金也写过体验鸿蒙电视应用开发的文章，点击下面👇即可看到：
 鸿蒙2.0发布，让我给大家整个活 而现在能给手机端开发了，于是去了华为HarmonyOS Developer网站，下载了最新的HUAWEI DevEco Studio
@@ -32,10 +32,10 @@ hml: 理解成变种的html语法，大体和html一样，不过会有一点区�
     
     <item>
       <title>装饰器Decorator：一个可能是未来JavaScript的新语法</title>
-      <link>https://blog.alpaca.run/posts/descriptor/</link>
+      <link>https://alpaca-bi.com/posts/descriptor/</link>
       <pubDate>Tue, 15 Dec 2020 10:16:33 +0800</pubDate>
       
-      <guid>https://blog.alpaca.run/posts/descriptor/</guid>
+      <guid>https://alpaca-bi.com/posts/descriptor/</guid>
       <description>首先要说一点，目前Decorator已经在在TypeScript中实装，所以下面的代码基本都是TypeScript代码，为了照顾没了解过TypeScript的小伙伴，例子里面关掉了ts类型检查，所以全是AnyScript,所以你基本上不会看到TypeScript的各种语法。
 1.脑子先别带东西，先看看下面的场景 我一般不喜欢一上来就说定义啊、用法之类的东西，我喜欢先从实际场景开始。
 先看看下面的代码
@@ -47,10 +47,10 @@ class Human { constructor(name){ this.name = name } name said() { console.log(`h
     
     <item>
       <title>第一篇博客</title>
-      <link>https://blog.alpaca.run/posts/first/</link>
+      <link>https://alpaca-bi.com/posts/first/</link>
       <pubDate>Tue, 08 Dec 2020 18:29:10 +0800</pubDate>
       
-      <guid>https://blog.alpaca.run/posts/first/</guid>
+      <guid>https://alpaca-bi.com/posts/first/</guid>
       <description>1.关于我 我是一个来自广州的95后，轻度社恐，写这篇博客的时候25岁了，算了下刚刚好出来工作3年了。
 我现在的职业是一个前端工程师。
 不过下班后我是Web全栈工程师、AI算法工程师、运维工程师、网络工程师、嵌入式工程师、网络安全工程师等等等。。。

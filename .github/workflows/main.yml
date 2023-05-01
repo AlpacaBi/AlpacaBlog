@@ -30,7 +30,7 @@ jobs:
         with:
           accessKeyId: ${{ secrets.ALIYUN_ACCESSKEY_ID }}
           accessKeySecret: ${{ secrets.ALIYUN_ACCESSKEY_SECRET }}
-          bucket: blog-alpaca-run
+          bucket: alpaca-bi
           # use your own endpoint
           endpoint: oss-cn-guangzhou.aliyuncs.com
           folder: public

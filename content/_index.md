@@ -16,7 +16,7 @@ npx alpaca-bi
 ```
 👇 If you use [**Deno**](https://deno.land)🦕, you also can 
 ```bash
-deno run https://cdn.alpaca.run/AlpacaBi.js
+deno run https://cdn.alpaca-bi.com/AlpacaBi.js
 ```
 
 ## 😎 A little more about me...  

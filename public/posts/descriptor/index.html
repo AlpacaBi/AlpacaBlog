@@ -7,12 +7,12 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="首先要说一点，目前Decorator已经在在TypeScript中实装，所以下面的代码基本都是TypeScript代码，为了照顾没了解过TypeScript的小伙伴，例子里面关掉了ts类型检查，所以全是AnyScript,所以你基本上不会看到TypeScript的各种语法。
-1.脑子先别带东西，先看看下面的场景  我一般不喜欢一上来就说定义啊、用法之类的东西，我喜欢先从实际场景开始。
+1.脑子先别带东西，先看看下面的场景 我一般不喜欢一上来就说定义啊、用法之类的东西，我喜欢先从实际场景开始。
 先看看下面的代码
-class Human { constructor(name){ this.name = name } name said() { console.log(`hi, my name is ${this.name}!!!\n`) } } class Cat { meow() { console.log(`meow!!!!`) } } let jack = new Human(&amp;#34;jack&amp;#34;) jack.said() // hi, my name is jack!!!  let tom = new Cat() tom.meow() // meow!!!! 基本上都知道是什么意思吧，就是有一个Human类和Cat类，Human类具有name属性和said方法，而Cat类只有meow方法。
+class Human { constructor(name){ this.name = name } name said() { console.log(`hi, my name is ${this.name}!!!\n`) } } class Cat { meow() { console.log(`meow!!!!`) } } let jack = new Human(&amp;#34;jack&amp;#34;) jack.said() // hi, my name is jack!!! let tom = new Cat() tom.meow() // meow!!!! 基本上都知道是什么意思吧，就是有一个Human类和Cat类，Human类具有name属性和said方法，而Cat类只有meow方法。
 而现在有一个需求，就是要给Human类和Cat类加上一个设置年龄和显示年龄的业务逻辑，仔细点说就是加上一个age属性、setAge方法和一个getAge方法，该怎么办呢？？？
 1.1.直接手动给这两个类添加 最直观的方法当然是，直接手动给这两个类添加，如下：
-class Human { constructor(name){ this.name = name } name said() { console.log(`hi, my name is ${this." />
+class Human { constructor(name){ this.name = name } name said() { console.log(`hi, my name is ${this.name}!!!`) } // 向Human手动添加age、setAge和getAge逻辑 age setAge(age) { this." />
 <meta name="keywords" content=", " />
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="https://blog.alpaca.run/posts/descriptor/" />
@@ -191,164 +191,164 @@ class Human { constructor(name){ this.name = name } name said() { console.log(`h
 <h1 id="span-stylecolorf901脑子先别带东西先看看下面的场景-span"><span style="color:#F90">1.脑子先别带东西，先看看下面的场景 </span><a href="#span-stylecolorf901脑子先别带东西先看看下面的场景-span" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
 <p>我一般不喜欢一上来就说定义啊、用法之类的东西，我喜欢先从实际场景开始。</p>
 <p>先看看下面的代码</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> {
-    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
-    }
-    <span style="color:#a6e22e">name</span>
-    <span style="color:#a6e22e">said() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
-    }
-}
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> {
-    <span style="color:#a6e22e">meow() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
-    }
-}
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
-<span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
-<span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">//  meow!!!!
-</span></code></pre></div><p>基本上都知道是什么意思吧，就是有一个<code>Human</code>类和<code>Cat</code>类，<code>Human</code>类具有<code>name</code>属性和<code>said</code>方法，而<code>Cat</code>类只有<code>meow</code>方法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">said() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">meow() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">//  meow!!!!
+</span></span></span></code></pre></div><p>基本上都知道是什么意思吧，就是有一个<code>Human</code>类和<code>Cat</code>类，<code>Human</code>类具有<code>name</code>属性和<code>said</code>方法，而<code>Cat</code>类只有<code>meow</code>方法。</p>
 <p>而现在有一个需求，就是要给<code>Human</code>类和<code>Cat</code>类加上一个设置年龄和显示年龄的业务逻辑，仔细点说就是加上一个<code>age</code>属性、<code>setAge</code>方法和一个<code>getAge</code>方法，该怎么办呢？？？</p>
 <h4 id="11直接手动给这两个类添加">1.1.直接手动给这两个类添加<a href="#11直接手动给这两个类添加" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
 <p>最直观的方法当然是，直接手动给这两个类添加，如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> {
-    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
-    }
-
-    <span style="color:#a6e22e">name</span>
-    <span style="color:#a6e22e">said() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!`</span>)
-    }
-
-    <span style="color:#75715e">// 向Human手动添加age、setAge和getAge逻辑
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">age</span>
-    <span style="color:#a6e22e">setAge</span>(<span style="color:#a6e22e">age</span>) {
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
-    }
-    <span style="color:#a6e22e">getAge() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
-    }
-}
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> {
-    <span style="color:#a6e22e">meow() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
-    }
-
-    <span style="color:#75715e">// 向Cat手动添加age、setAge和getAge逻辑
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">age</span>
-    <span style="color:#a6e22e">setAge</span>(<span style="color:#a6e22e">age</span>) {
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
-    }
-    <span style="color:#a6e22e">getAge() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
-    }
-}
-
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
-<span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">22</span>)
-<span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 22 years old now!!!
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
-<span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">// meow!!!!
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">3</span>)
-<span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 3 years old now!!!
-</span></code></pre></div><p>这样当然能实现需求了，但是这么搞技术含量就有点低了，因为<code>age</code>、<code>setAge</code>和<code>getAge</code>的逻辑和联动都是一模一样的，一样的东西在两个类里都写一遍，未免会觉得代码臃肿而且没有组织性。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">said() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 向Human手动添加age、setAge和getAge逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setAge</span>(<span style="color:#a6e22e">age</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getAge() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">meow() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 向Cat手动添加age、setAge和getAge逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setAge</span>(<span style="color:#a6e22e">age</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getAge() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">22</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 22 years old now!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">// meow!!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 3 years old now!!!
+</span></span></span></code></pre></div><p>这样当然能实现需求了，但是这么搞技术含量就有点低了，因为<code>age</code>、<code>setAge</code>和<code>getAge</code>的逻辑和联动都是一模一样的，一样的东西在两个类里都写一遍，未免会觉得代码臃肿而且没有组织性。</p>
 <h4 id="12通过class的继承来抽出公共部分">1.2.通过class的继承来抽出公共部分<a href="#12通过class的继承来抽出公共部分" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
 <p>我们可以使用面向对象的继承思想来组织代码，把公用的东西抽出来。</p>
 <p>所以我们要做的就是造一个父类<code>Animal</code>（虽然把<code>Human</code>归进<code>Animal</code>有点怪怪的），把<code>age</code>、<code>setAge</code>和<code>getAge</code>这套公用的逻辑塞进父类<code>Animal</code>里，然后<code>Human</code>类和<code>Cat</code>类都继承于父类<code>Animal</code>，如下。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
-    <span style="color:#75715e">// 把age、setAge和getAge逻辑抽出来，塞进父类Animal
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">age</span>
-    <span style="color:#a6e22e">setAge</span>(<span style="color:#a6e22e">age</span>) {
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
-    }
-    <span style="color:#a6e22e">getAge() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
-    }
-}
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Animal</span> {
-    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
-        <span style="color:#66d9ef">super</span>()
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
-    }
-
-    <span style="color:#a6e22e">name</span>;
-    <span style="color:#a6e22e">said() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!`</span>)
-    }
-}
-
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Animal</span> {
-    <span style="color:#a6e22e">meow() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
-    }
-}
-
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
-<span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">22</span>)
-<span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 22 years old now!!!
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
-<span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">// meow!!!!
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">3</span>)
-<span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 3 years old now!!!
-</span></code></pre></div><p>事实上，很多业务里面都是采用上面的写法的，这也是目前大多数场景解决方案。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 把age、setAge和getAge逻辑抽出来，塞进父类Animal
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setAge</span>(<span style="color:#a6e22e">age</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getAge() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">said() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">meow() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">22</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 22 years old now!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">// meow!!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 3 years old now!!!
+</span></span></span></code></pre></div><p>事实上，很多业务里面都是采用上面的写法的，这也是目前大多数场景解决方案。</p>
 <h4 id="13使用装饰器decorator来注入公共部分">1.3.使用装饰器<code>Decorator</code>来注入公共部分<a href="#13使用装饰器decorator来注入公共部分" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h4>
 <p>好了，上面铺垫了这么多，现在，就给你看看用装饰器<code>Decorator</code>是怎么实现上面的需求的（看就行了，不要求你去理解）</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">addAge</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=&gt;</span> {
-    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">prototype</span>, {
-        <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">0</span>,
-        <span style="color:#a6e22e">setAge</span>: <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">age</span>){
-            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
-        },
-        <span style="color:#a6e22e">getAge</span>: <span style="color:#66d9ef">function</span>(){
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
-        }
-    })
-}
-    
-<span style="color:#66d9ef">@addAge</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> {
-    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
-    }
-    
-    <span style="color:#a6e22e">name</span>;
-    <span style="color:#a6e22e">said() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!`</span>)
-    }
-}
-
-<span style="color:#66d9ef">@addAge</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> {
-    <span style="color:#a6e22e">meow() {</span>
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
-    }
-}
-
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span>: <span style="color:#66d9ef">any</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
-<span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">22</span>)
-<span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 22 years old now!!!
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span>: <span style="color:#66d9ef">any</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
-<span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">// meow!!!!
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">3</span>)
-<span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 3 years old now!!!
-</span></code></pre></div><p>可能你会想这个<code>@addAge</code>是个什么鬼语法，addAge函数里面的<code>target</code>什么什么玩意，先别急，这个后面会慢慢说，只是现在你观察一下，这个方案和之前的两个方案有什么不一样？？？？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">addAge</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">prototype</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">0</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setAge</span>: <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">age</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">getAge</span>: <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`I am </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> years old now!!!</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">n`</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@addAge</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Human</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">name</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">said() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`hi, my name is </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!!!`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@addAge</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">meow() {</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`meow!!!!`</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">jack</span>: <span style="color:#66d9ef">any</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Human</span>(<span style="color:#e6db74">&#34;jack&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">said</span>() <span style="color:#75715e">// hi, my name is jack!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">22</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">jack</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 22 years old now!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tom</span>: <span style="color:#66d9ef">any</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Cat</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">meow</span>() <span style="color:#75715e">// meow!!!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">setAge</span>(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">tom</span>.<span style="color:#a6e22e">getAge</span>() <span style="color:#75715e">// I am 3 years old now!!!
+</span></span></span></code></pre></div><p>可能你会想这个<code>@addAge</code>是个什么鬼语法，addAge函数里面的<code>target</code>什么什么玩意，先别急，这个后面会慢慢说，只是现在你观察一下，这个方案和之前的两个方案有什么不一样？？？？</p>
 <p>你会发现，第3个方案<strong>并没有去改<code>Human</code>和<code>Cat</code>类的代码</strong>。</p>
 <p>为了满足往<code>Human</code>和<code>Cat</code>类加上<code>age</code>、<code>setAge</code>和<code>getAge</code>这三个玩意，第1个方案直接往<code>Human</code>和<code>Cat</code>里面加了那3个玩意，第2个方案则是强行让<code>Human</code>和<code>Cat</code>去extends Animal来认爹。</p>
 <p>而第3个方案并没有去改<code>Human</code>和<code>Cat</code>的代码，而是直接往他们的头上扣一个<code>@addAge</code>,这样生成的实例就已经有那3个玩意了（所以装饰器的名字就是这么来的）。</p>

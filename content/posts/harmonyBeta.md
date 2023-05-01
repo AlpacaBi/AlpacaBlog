@@ -17,19 +17,19 @@ showFullContent = false
 那个时候在[掘金](https://juejin.cn/)也写过体验鸿蒙电视应用开发的文章，点击下面👇即可看到：
 
 <span style="color:#F90">[鸿蒙2.0发布，让我给大家整个活](https://juejin.cn/post/6870840090608795662)</span>
-![1](https://cdn.alpaca.run/blog/harmonyBeta/1.png)
+![1](https://cdn.alpaca-bi.com/blog/harmonyBeta/1.png)
 
 而现在能给手机端开发了，于是去了华为<span style="color:#F90">[HarmonyOS Developer](https://developer.harmonyos.com/cn/home)</span>网站，下载了最新的<span style="color:#F90">[HUAWEI DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio)</span>
 
 创建项目，就看到了可以选择手机端开发了👇👇
-![2](https://cdn.alpaca.run/blog/harmonyBeta/2.jpg)
+![2](https://cdn.alpaca-bi.com/blog/harmonyBeta/2.jpg)
 
 <br/>
 
 之前为了折腾下阿里云的serverless，就做了一个物联网小项目,还起了个Alpaca IOT的名字
 
 简单来说就是给我家里的树莓派和工位上的树莓派接上dht11温度传感器
-![3](https://cdn.alpaca.run/blog/harmonyBeta/31.png)
+![3](https://cdn.alpaca-bi.com/blog/harmonyBeta/31.png)
 
 然后把采集到的温湿度数据上传到我自己写的阿里云serverless应用
 
@@ -40,7 +40,7 @@ showFullContent = false
 <span style="color:#F90">[Alpaca IOT](https://iot.alpaca.run)</span>
 
 网站如图所示
-![4](https://cdn.alpaca.run/blog/harmonyBeta/41.jpg)
+![4](https://cdn.alpaca-bi.com/blog/harmonyBeta/41.jpg)
 
 
 所以我现在的工作，就是把我这个前端网页的业务，移植到鸿蒙app上
@@ -49,22 +49,22 @@ showFullContent = false
 # <span style="color:#F90">2.新建项目 </span>
 
 选择手机开发项目，然后项目的目录就出来了。
-![5](https://cdn.alpaca.run/blog/harmonyBeta/5.png)
+![5](https://cdn.alpaca-bi.com/blog/harmonyBeta/5.png)
 
 当然了，第一件事并不是写代码，而是去弄一个运行鸿蒙系统的虚拟机（其实流程和Android Studio是一样的），这样我写的代码才有地方跑
-![6](https://cdn.alpaca.run/blog/harmonyBeta/6.png)
+![6](https://cdn.alpaca-bi.com/blog/harmonyBeta/6.png)
 
-![7](https://cdn.alpaca.run/blog/harmonyBeta/7.png)
+![7](https://cdn.alpaca-bi.com/blog/harmonyBeta/7.png)
 
 然后砰的一下，一个运行鸿蒙os的虚拟手机就跑起来了。
-![8](https://cdn.alpaca.run/blog/harmonyBeta/8.png)
+![8](https://cdn.alpaca-bi.com/blog/harmonyBeta/8.png)
 
 其实这玩意并不是真的运行在我本地的鸿蒙虚拟机，而是一个远程桌面而已，所以待会写出来的代码，估计是跑在远程的华为机器，然后以远程桌面的形式返回回来
 
 所以体验有点不好，因为远程传输的画面很糊，操作起来也卡（不是系统卡，而是远程桌面网不好的话有延时）
 
 好了，既然虚拟机跑起来了，就直接执行项目代码吧，然后一个hello world出来了，说明运行成功。
-![9](https://cdn.alpaca.run/blog/harmonyBeta/9.png)
+![9](https://cdn.alpaca-bi.com/blog/harmonyBeta/9.png)
 
 由于我只是个卑微的前端菜🐔，而鸿蒙又支持js开发，所以我就用js开发了，然后顺便也对比下开发过程中和前端的区别，然后点进去源码的js文件夹，实现这个hello world的其实也是靠三座大山（hml、css、js）
 
@@ -120,11 +120,11 @@ export default {
 - hml
     1. 这里的布局只有flex和grid(默认flex)，所以默认的前端html传统文档流在这里会垮掉（比如div标签并不会换行，换行操作要靠设置flex相关属性）
     2. 文字内容要用`<text>`标签包起来，不包的话文字不会显示出来
-![10](https://cdn.alpaca.run/blog/harmonyBeta/10.png)
+![10](https://cdn.alpaca-bi.com/blog/harmonyBeta/10.png)
 - js
     1. 如图，看来貌似这里的js运行时不支持async/await（有没有Promise没试过，看来貌似要地狱回调）
     2. 看来一些api也不能直接用，比如`fetch`，后来看了下开发文档想要搞网络请求要从`@system.fetch`引,而且引过来的fetch只能靠回调拿数据
-![11](https://cdn.alpaca.run/blog/harmonyBeta/11.png)
+![11](https://cdn.alpaca-bi.com/blog/harmonyBeta/11.png)
 - css 
     1. 大致相同，就我发现的可能这里的css规则会更严格，比如我想设置背景色我用background不行，必须要background-color
 
@@ -422,17 +422,17 @@ export default {
 ```  
 
 然后我的鸿蒙物联网APP Alpaca IOT就这样跑起来啦！！！
-![12](https://cdn.alpaca.run/blog/harmonyBeta/12.png)
+![12](https://cdn.alpaca-bi.com/blog/harmonyBeta/12.png)
 
 现在既然做出来了，最后一步，就是打包app了，怎么打包我就不说了，也就是按几个菜单而已，最后就打包出hap后缀的安装包了。
 
-![13](https://cdn.alpaca.run/blog/harmonyBeta/13.png)
+![13](https://cdn.alpaca-bi.com/blog/harmonyBeta/13.png)
 
 
 所以从现在开始，我可以说自己是开发过鸿蒙APP的工程师了！！！
 
 ps.一个开发过程中遇到的一个小插曲👇👇
-![15](https://cdn.alpaca.run/blog/harmonyBeta/16.png)
+![15](https://cdn.alpaca-bi.com/blog/harmonyBeta/16.png)
 
 
 
@@ -443,10 +443,10 @@ ps.一个开发过程中遇到的一个小插曲👇👇
 所以很核心的问题来了，要跑在真手机上才有意义！！！
 
 还好昨天华为就公测招募华为鸿蒙OS 2.0手机开发者Beta版，支持Mate 30 / P40系列OTA升级。
-![14](https://cdn.alpaca.run/blog/harmonyBeta/14.png)
+![14](https://cdn.alpaca-bi.com/blog/harmonyBeta/14.png)
 
 而我恰好也有一台P40PRO，符合设备要求，所以我也提了申请了！！！
-![15](https://cdn.alpaca.run/blog/harmonyBeta/15.jpg)
+![15](https://cdn.alpaca-bi.com/blog/harmonyBeta/15.jpg)
 
 等到申请通过，我的手机就可以OTA升级到鸿蒙系统，到时候把我刚刚打包的APP跑到我的手机上，再更新相关内容。
 

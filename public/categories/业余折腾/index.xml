@@ -14,20 +14,20 @@
       <pubDate>Thu, 17 Dec 2020 13:39:39 +0800</pubDate>
       
       <guid>https://blog.alpaca.run/posts/harmonybeta/</guid>
-      <description>1.前言  其实鸿蒙2.0今年在9月份的时候已经发布，只不过那个时候只能开发手表和电视应用，还不支持手机。
+      <description>1.前言 其实鸿蒙2.0今年在9月份的时候已经发布，只不过那个时候只能开发手表和电视应用，还不支持手机。
 那个时候在掘金也写过体验鸿蒙电视应用开发的文章，点击下面👇即可看到：
 鸿蒙2.0发布，让我给大家整个活 而现在能给手机端开发了，于是去了华为HarmonyOS Developer网站，下载了最新的HUAWEI DevEco Studio
-创建项目，就看到了可以选择手机端开发了👇👇 之前为了折腾下阿里云的serverless，就做了一个物联网小项目,还起了个Alpaca IOT的名字
+创建项目，就看到了可以选择手机端开发了👇👇 之前为了折腾下阿里云的serverless，就做了一个物联网小项目,还起了个Alpaca IOT的名字
 简单来说就是给我家里的树莓派和工位上的树莓派接上dht11温度传感器 然后把采集到的温湿度数据上传到我自己写的阿里云serverless应用
 之后撸一个前端页面，从我自己写的阿里云serverless应用里读取温湿度数据，显示下来。
 然后把这个网页部署到服务器，就是下面的链接👇👇
 Alpaca IOT
 网站如图所示 所以我现在的工作，就是把我这个前端网页的业务，移植到鸿蒙app上
-2.新建项目  选择手机开发项目，然后项目的目录就出来了。 当然了，第一件事并不是写代码，而是去弄一个运行鸿蒙系统的虚拟机（其实流程和Android Studio是一样的），这样我写的代码才有地方跑 然后砰的一下，一个运行鸿蒙os的虚拟手机就跑起来了。 其实这玩意并不是真的运行在我本地的鸿蒙虚拟机，而是一个远程桌面而已，所以待会写出来的代码，估计是跑在远程的华为机器，然后以远程桌面的形式返回回来
+2.新建项目 选择手机开发项目，然后项目的目录就出来了。 当然了，第一件事并不是写代码，而是去弄一个运行鸿蒙系统的虚拟机（其实流程和Android Studio是一样的），这样我写的代码才有地方跑 然后砰的一下，一个运行鸿蒙os的虚拟手机就跑起来了。 其实这玩意并不是真的运行在我本地的鸿蒙虚拟机，而是一个远程桌面而已，所以待会写出来的代码，估计是跑在远程的华为机器，然后以远程桌面的形式返回回来
 所以体验有点不好，因为远程传输的画面很糊，操作起来也卡（不是系统卡，而是远程桌面网不好的话有延时）
 好了，既然虚拟机跑起来了，就直接执行项目代码吧，然后一个hello world出来了，说明运行成功。 由于我只是个卑微的前端菜🐔，而鸿蒙又支持js开发，所以我就用js开发了，然后顺便也对比下开发过程中和前端的区别，然后点进去源码的js文件夹，实现这个hello world的其实也是靠三座大山（hml、css、js）
 他们的初始代码如下:
- hml: 理解成变种的html语法，大体和html一样，不过会有一点区别  &amp;lt;!- index.hml --&amp;gt; &amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt; &amp;lt;text class=&amp;#34;title&amp;#34;&amp;gt; {{ $t(&amp;#39;strings.hello&amp;#39;) }} {{title}} &amp;lt;/text&amp;gt; &amp;lt;/div&amp;gt;  JavaScript: 标准ECMA,就是js运行时会和浏览器的有一点区别（比如一些api不一定能直接用）  // index.js export default { data: { title: &amp;#34;&amp;#34; }, onInit() { this.title = this.</description>
+hml: 理解成变种的html语法，大体和html一样，不过会有一点区别 &amp;lt;!- index.hml --&amp;gt; &amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt; &amp;lt;text class=&amp;#34;title&amp;#34;&amp;gt; {{ $t(&amp;#39;strings.hello&amp;#39;) }} {{title}} &amp;lt;/text&amp;gt; &amp;lt;/div&amp;gt; JavaScript: 标准ECMA,就是js运行时会和浏览器的有一点区别（比如一些api不一定能直接用） // index.js export default { data: { title: &amp;#34;&amp;#34; }, onInit() { this.title = this.$t(&amp;#39;strings.world&amp;#39;); } } - css: 基本没发现和普通css有什么区别 /* index.css */ .</description>
     </item>
     
   </channel>

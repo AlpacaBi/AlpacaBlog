@@ -24,7 +24,7 @@ deno run https://cdn.alpaca-bi.com/AlpacaBi.js
 ```go
 AlpacaBi := &Info { 
     Name: "Alpaca Bi",
-    Age: 26,
+    Age: 28,
     Occupation: "Web Full Stack Developer",
     Clergy: "Flying Spaghetti Monsterism Minister",
     Email: "biguokang@outlook.com",

@@ -29,7 +29,7 @@ AlpacaBi := &Info {
     Clergy: "Flying Spaghetti Monsterism Minister",
     Email: "biguokang@outlook.com",
     Wechat: "workbiguokang",
-    Website: "https://alpaca.run",
+    Website: "https://alpaca-bi.com",
     Location: "Guangzhou China"
 }
 ```
